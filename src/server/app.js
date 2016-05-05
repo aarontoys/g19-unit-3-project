@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 
 // *** routes *** //
 var routes = require('./routes/index.js');
+var listRoute = require('./routes/list.js');
 
 
 // *** express instance *** //
@@ -27,9 +28,10 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 // *** config middleware *** //
-if(process.env.NODE_ENV !== 'test') {
-  app.use(logger('dev'));
-}
+// if(process.env.NODE_ENV !== 'test') {
+//   app.use(logger('dev'));
+// }
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -38,6 +40,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 // *** main routes *** //
 app.use('/', routes);
+app.use('/lists', listRoute);
 
 
 // catch 404 and forward to error handler
@@ -55,7 +58,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.json({
       message: err.message,
       error: err
     });
@@ -66,7 +69,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.json({
     message: err.message,
     error: {}
   });
