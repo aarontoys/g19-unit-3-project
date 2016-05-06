@@ -27,5 +27,17 @@
             vm.habits = habits.data.data
           })
       }
+
+      function addHabit () {
+        habitListDataService.addHabit()
+          .then(function() {
+            console.log('directive line34')
+          });
+      }
+
+      this.addItem = function () {
+        console.log('the button was clicked');
+        return addHabit();
+      }
     }
 })();
