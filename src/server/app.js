@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 
 // *** routes *** //
 var routes = require('./routes/index.js');
-var listRoute = require('./routes/list.js');
+var habitRoute = require('./routes/habit.js');
 
 
 // *** express instance *** //
@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 // *** main routes *** //
 app.use('/', routes);
-app.use('/lists', listRoute);
+app.use('/habits', habitRoute);
 
 
 // catch 404 and forward to error handler

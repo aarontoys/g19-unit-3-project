@@ -44,7 +44,7 @@ describe('habitList routes', function() {
 
     it('should return all habits in habitList', function(done) {
       chai.request(server)
-      .get('/lists')
+      .get('/habits')
       .end(function(err, res) {
         res.status.should.equal(200);
         res.type.should.equal('application/json');
