@@ -13,9 +13,9 @@
       }
     }
 
-    habitListCtrl.$inject = ['habitListDataService'];
+    habitListCtrl.$inject = ['$uibModal', 'habitListDataService'];
 
-    function habitListCtrl (habitListDataService) {
+    function habitListCtrl ($uibModal, habitListDataService) {
       var vm = this;
 
       getHabits();
@@ -35,9 +35,33 @@
           });
       }
 
-      this.addItem = function () {
+      vm.addItem = function () {
         console.log('the button was clicked');
-        return addHabit();
+        // return addHabit();
+        $uibModal.open({
+          templateUrl: 'app/habitList/habitList.newHabit.view.html',
+          controller: uibModalCtrl,
+          controllerAs: 'modal'
+        })
       }
+
+      uibModalCtrl.$inject = ['$uibModalInstance'];
+
+      function uibModalCtrl ($uibModalInstance) {
+        var modal = this;
+
+        modal.cancelForm = function () {
+          console.log('cancelForm');
+          $uibModalInstance.dismiss('cancel');
+        }
+
+        modal.submitForm = function () {
+          console.log('submitForm');
+          addHabit();
+          $uibModalInstance.close();
+        }
+        
+      }
+
     }
 })();
