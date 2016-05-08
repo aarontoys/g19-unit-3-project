@@ -32,6 +32,7 @@
         habitListDataService.addHabit(modalData)
           .then(function() {
             console.log('directive line34')
+            getHabits();
           });
       }
 
@@ -59,7 +60,7 @@
           console.log('submitForm');
           console.log('modal obj:', modal);
           addHabit(modal);
-          getHabits();
+          // getHabits();
           $uibModalInstance.close();
         }
         
