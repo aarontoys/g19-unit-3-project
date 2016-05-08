@@ -19,9 +19,13 @@
             return err;
           })
       },
-      addHabit: function () {
+      addHabit: function (newHabit) {
+          console.log('this should be the data from the modal: ', newHabit);
         return $http.post('/habits', {
-          habit: 'Test new habit'
+          habit: newHabit.habit,
+          description: newHabit.description,
+          interval: newHabit.interval,
+          period: newHabit.period
         })
           .then(function(res) {
             console.log('succes', res);

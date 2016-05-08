@@ -5,17 +5,17 @@
   <form>
     <div class="form-group">
       <label for="habit">Habit Name:</label>
-      <input type="text" class="form-control" name="habit" placeholder="Quit Smoking (pot)">
+      <input ng-model="modal.habit" type="text" class="form-control" name="habit" placeholder="Quit Smoking (pot)">
     </div>
     <div class="form-group">
       <label for="description">Description:</label>
-      <input type="text" class="form-control" name="description" placeholder="I want to stop smoking pot during the week (weekends are still ok! ;-)">
+      <input ng-model="modal.description" type="text" class="form-control" name="description" placeholder="I want to stop smoking pot during the week (weekends are still ok! ;-)">
     </div>
     <div class="form-group">
       <label for="fName">Frequency:</label>
       <div class="form-inline">
-        Every <input type="number" class="form-control" name="interval" placeholder="1">
-        <select class="form-control" name="period">
+        Every <input ng-model="modal.interval" type="number" class="form-control" name="interval" placeholder="1">
+        <select ng-model="modal.period" class="form-control" name="period">
           <option value="daily">Days(s)</option>
           <option value="weekly">Weeks(s)</option>
           <option value="montly">Month(s)</option>
@@ -25,6 +25,7 @@
       </div>  
     </div>  
   </form>
+  <p>{{modal}}</p>
 </div>
 <div class="modal-footer">
   <button class="btn btn-danger" ng-click="modal.cancelForm()">Cancel</button>
