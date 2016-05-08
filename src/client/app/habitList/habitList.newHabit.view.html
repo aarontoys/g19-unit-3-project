@@ -1,5 +1,6 @@
 <div class="modal-header">
   <h3 class="modal-title">Add a new habit!</h3>
+  <p>Parent id: {{modal.parent_id}}</p>
 </div>
 <div class="modal-body">
   <form>
@@ -32,10 +33,15 @@
       <label>
         <input ng-model="modal.public" type="checkbox" name="public">Make Habit Public?
     </div>
+    <div class="checkbox">
+      <label>
+        <input ng-model="modal.subHabit" type="checkbox" name="public">Does this habit have sub-habits that will help you work or build towards this habit?
+    </div>
   </form>
   <p>{{modal}}</p>
 </div>
 <div class="modal-footer">
   <button class="btn btn-danger" ng-click="modal.cancelForm()">Cancel</button>
   <button class="btn btn-success" ng-click="modal.submitForm()">Add Habit</button>
+  <button class="btn btn-success" ng-click="modal.submitForm()">Add habit and create new sub-habit</button>
 </div>

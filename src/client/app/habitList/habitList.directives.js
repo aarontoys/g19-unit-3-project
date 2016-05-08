@@ -30,8 +30,13 @@
 
       function addHabit (modalData) {
         habitListDataService.addHabit(modalData)
-          .then(function() {
+          .then(function(result) {
             console.log('directive line34')
+            console.log('result: ', result.data.id[0]);
+            if (modalData.subHabit) {
+              console.log('subHabit checked');
+              vm.addItem(result.data.id[0]);
+            }
             getHabits();
           });
       }
@@ -46,10 +51,12 @@
         })
       }
 
-      uibModalCtrl.$inject = ['$uibModalInstance'];
+      uibModalCtrl.$inject = ['$uibModalInstance', 'habitListDataService'];
 
-      function uibModalCtrl ($uibModalInstance) {
+      function uibModalCtrl ($uibModalInstance, habitListDataService) {
         var modal = this;
+
+        modal.parent_habit_id = habitListDataService.getNewHabitId();
 
         modal.cancelForm = function () {
           console.log('cancelForm');

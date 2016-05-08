@@ -21,9 +21,11 @@ router.post('/', function (req, res, next) {
   var b = req.body;
 
   habitList.addHabit(b.habit, b.description, b.interval, b.period, b.parent_habit_id, b.category_id, b.public, b.cost)
-    .then(function () {
+    .then(function (id) {
+      console.log('new habit id: ', id);
       res.status(200).json({
-        status: 'success'
+        status: 'success',
+        id: id
       })
     })
 })

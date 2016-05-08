@@ -14,7 +14,7 @@ var addHabit = function (habit, description, interval, period, parent_habit_id, 
     category_id: category_id,
     public: public,
     cost: cost
-  })
+  },'id')
 }
 
 

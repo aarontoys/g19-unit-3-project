@@ -7,6 +7,9 @@
   habitListDataService.$inject = ['$http'];
 
   function habitListDataService ($http) {
+
+    var insertRes = [];
+
     return {
       getAllHabits: function () {
         return $http.get('/habits')
@@ -32,12 +35,18 @@
         })
           .then(function(res) {
             console.log('succes', res);
+            insertRes.push(res.data.id[0]);
+            console.log(insertRes);
             return res;
           })
           .catch(function(err) {
             console.log('err line28: ', err);
             return err;
           });
+      },
+      getNewHabitId: function () {
+        console.log('line 49', insertRes);
+        return insertRes[0];
       }
     }
   }
