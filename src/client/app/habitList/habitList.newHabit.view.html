@@ -5,14 +5,14 @@
   <form>
     <div class="form-group">
       <label for="habit">Habit Name:</label>
-      <input ng-model="modal.habit" type="text" class="form-control" name="habit" placeholder="Quit Smoking (pot)">
+      <input ng-model="modal.habit" type="text" class="form-control" name="habit" placeholder="Quit Smoking (pot)" autofocus>
     </div>
     <div class="form-group">
       <label for="description">Description:</label>
       <input ng-model="modal.description" type="text" class="form-control" name="description" placeholder="I want to stop smoking pot during the week (weekends are still ok! ;-)">
     </div>
     <div class="form-group">
-      <label for="fName">Frequency:</label>
+      <label for="interval">Frequency:</label>
       <div class="form-inline">
         Every <input ng-model="modal.interval" type="number" class="form-control" name="interval" placeholder="1">
         <select ng-model="modal.period" class="form-control" name="period">
@@ -23,7 +23,15 @@
           
         </select>
       </div>  
+    </div>
+    <div class="form-group">
+      <label for="cost">Reward/Punishment Value: </label>
+      <input ng-model="modal.cost" type="number" step="0.01" class="form-control" name="cost" placeholder="1.00"></input>      
     </div>  
+    <div class="checkbox">
+      <label>
+        <input ng-model="modal.public" type="checkbox" name="public">Make Habit Public?
+    </div>
   </form>
   <p>{{modal}}</p>
 </div>

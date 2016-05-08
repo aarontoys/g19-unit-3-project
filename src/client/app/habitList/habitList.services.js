@@ -26,7 +26,9 @@
           description: newHabit.description,
           interval: newHabit.interval,
           period: newHabit.period,
-          parent_habit_id: newHabit.parent_habit_id || 0
+          parent_habit_id: newHabit.parent_habit_id || 0,
+          public: newHabit.public,
+          cost: newHabit.cost
         })
           .then(function(res) {
             console.log('succes', res);
