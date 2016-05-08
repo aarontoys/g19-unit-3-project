@@ -9,6 +9,8 @@ exports.up = function(knex, Promise) {
     table.integer('parent_habit_id');
     table.integer('category_id').references('categories.id').onDelete('cascade');
     // table.integer('user_id').references('users.id').onDelete('cascade');
+    table.boolean('public');
+    table.decimal('cost');
   })
 };
 

@@ -59,6 +59,8 @@ describe('habitList routes', function() {
         res.body.data[0].period.should.equal('daily');
         res.body.data[0].parent_habit_id.should.equal(0);
         res.body.data[0].category_id.should.equal(1);
+        res.body.data[0].public.should.equal(true);
+        res.body.data[0].cost.should.equal('1.00');
       done()
       })
     })
@@ -97,7 +99,9 @@ describe('habitList routes', function() {
         interval: 2,
         period: 'daily',
         parent_habit_id: 0,
-        category_id: 3
+        category_id: 3,
+        public: true,
+        cost: 1.25
       })
       .end(function(err, res) {
         chai.request(server)
@@ -115,6 +119,9 @@ describe('habitList routes', function() {
           res.body.data[3].period.should.equal('daily');
           res.body.data[3].parent_habit_id.should.equal(0);
           res.body.data[3].category_id.should.equal(3);
+          res.body.data[3].public.should.equal(true);
+          res.body.data[3].cost.should.equal('1.25');
+          parseFloat(res.body.data[3].cost).should.equal(parseFloat('1.25'));
           done()
         })
       })

@@ -20,7 +20,7 @@ router.post('/', function (req, res, next) {
   console.log('habit line20: ', req.body);
   var b = req.body;
 
-  habitList.addHabit(b.habit, b.description, b.interval, b.period, b.parent_habit_id, b.category_id)
+  habitList.addHabit(b.habit, b.description, b.interval, b.period, b.parent_habit_id, b.category_id, b.public, b.cost)
     .then(function () {
       res.status(200).json({
         status: 'success'

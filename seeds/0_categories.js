@@ -19,6 +19,12 @@ exports.seed = function(knex, Promise) {
       id: 3, 
       category: 'Negative',
       parent_category_id: 1
+    }),
+    knex('categories').insert({
+      id: 4,
+      category: 'Productivity',
+      parent_category_id: 0,
     })
+
   );
 };

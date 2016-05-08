@@ -12,7 +12,9 @@ exports.seed = function(knex, Promise) {
       interval: 2,
       period: 'daily',
       parent_habit_id: 0,
-      category_id: 1
+      category_id: 1,
+      public: true,
+      cost: 1.00
     }),
     knex('habits').insert({
       // id: 2, 
@@ -21,7 +23,9 @@ exports.seed = function(knex, Promise) {
       interval: 2,
       period: 'daily',
       parent_habit_id: 1,
-      category_id: 1
+      category_id: 1,
+      public: true,
+      cost: 1.00
     }),
     knex('habits').insert({
       // id: 3, 
@@ -30,7 +34,9 @@ exports.seed = function(knex, Promise) {
       interval: 2,
       period: 'daily',
       parent_habit_id: 1,
-      category_id: 1
+      category_id: 1,
+      public: true,
+      cost: 1.00
     })
   );
 };
