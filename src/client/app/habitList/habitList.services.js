@@ -25,7 +25,8 @@
           habit: newHabit.habit,
           description: newHabit.description,
           interval: newHabit.interval,
-          period: newHabit.period
+          period: newHabit.period,
+          parent_habit_id: newHabit.parent_habit_id || 0
         })
           .then(function(res) {
             console.log('succes', res);
