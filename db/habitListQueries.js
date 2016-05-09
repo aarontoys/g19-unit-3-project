@@ -17,11 +17,16 @@ var addHabit = function (habit, description, interval, period, parent_habit_id, 
   },'id')
 }
 
+function getSingleHabit (id) {
+  return knex('habits')
+    .where('id',id)
+}
 
 module.exports = {
     // getUserHabits: function() {
     //   return userHabits();  
     // }
     getAllHabits: getAllHabits,
-    addHabit: addHabit
+    addHabit: addHabit,
+    getSingleHabit: getSingleHabit
 }

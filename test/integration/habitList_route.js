@@ -66,27 +66,32 @@ describe('habitList routes', function() {
     })
   })
 
-  // describe('/GET students', function() {
+  describe('/GET single habit', function() {
 
-  //   it('should return all students', function(done) {
-  //     Students.findOne(function (err, student) {
-  //       chai.request(server)  
-  //       .get('/students/'+student._id)
-  //       .end(function(err, res) {
-  //         res.status.should.equal(200);
-  //         res.type.should.equal('application/json');
-  //         res.body.should.be.a('object');
-  //         res.body.should.have.property('data')
-  //         res.body.status.should.equal('success')
-  //         // console.log(res.body);
-  //         res.body.data.fName.should.equal('Aaron');
-  //         res.body.data.lName.should.equal('Toys');
-  //         res.body.data.year.should.equal(1998);
-  //       done();
-  //       });
-  //     })
-  //   });
-  // });
+    it('should return a single habit', function(done) {
+      // Students.findOne(function (err, student) {
+        chai.request(server)  
+        .get('/habits/1')
+        .end(function(err, res) {
+          res.status.should.equal(200);
+          res.type.should.equal('application/json');
+          res.body.should.be.a('object');
+          res.body.should.have.property('data')
+          res.body.status.should.equal('success')
+          res.body.data.length.should.equal(1);
+          res.body.data[0].habit.should.equal('Shema');
+          res.body.data[0].description.should.equal('Say the Shema and before and after brochos twice daily at the propper time');
+          res.body.data[0].interval.should.equal(2);
+          res.body.data[0].period.should.equal('daily');
+          res.body.data[0].parent_habit_id.should.equal(0);
+          res.body.data[0].category_id.should.equal(1);
+          res.body.data[0].public.should.equal(true);
+          res.body.data[0].cost.should.equal('1.00');
+        done()
+        });
+      // })
+    });
+  });
 
   describe('/POST habits', function() {
 
