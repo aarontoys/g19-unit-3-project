@@ -1,3 +1,8 @@
+/*.test-col {
+  background-color: #ccc;
+  border: 1px solid black;
+}
+*/
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -14,4 +19,42 @@ a {
 
 .input-group {
   margin-bottom: 3px;
+}
+
+/* add custom styles */
+.navbar-center {
+  width: 100%;
+  text-align: center;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+/*.text-center {
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  right: 0px;
+}*/
+
+.li-nav:not(:last-child):after {
+  content: " |";
+}
+
+.repeatContainer {
+  display: flex;
+  margin: 10px 0;
+}
+
+img {
+  width: 100%;
+}
+
+.register {
+  position: absolute;
+  top: 50%;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ccc;
+  border-radius: 20px;
 }
