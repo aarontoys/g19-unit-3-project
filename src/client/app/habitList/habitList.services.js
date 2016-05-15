@@ -44,9 +44,21 @@
             return err;
           });
       },
-      getNewHabitId: function () {
+      getParentHabitId: function () {
         console.log('line 49', insertRes);
         return insertRes[0];
+      },
+      getSingleHabit: function (id) {
+        return $http.get('/habits/'+id)
+          .then(function(res) {
+            return res;
+          })
+          .catch(function(err) {
+            return err;
+          })
+      },
+      resetInsertArr: function () {
+        return insertRes = [];
       }
     }
   }

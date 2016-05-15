@@ -31,11 +31,14 @@
       function addHabit (modalData) {
         habitListDataService.addHabit(modalData)
           .then(function(result) {
+            debugger
             console.log('directive line34')
             console.log('result: ', result.data.id[0]);
             if (modalData.subHabit) {
               console.log('subHabit checked');
-              vm.addItem(result.data.id[0]);
+              vm.addItem();
+            } else {
+              habitListDataService.resetInsertArr();
             }
             getHabits();
           });
@@ -56,7 +59,22 @@
       function uibModalCtrl ($uibModalInstance, habitListDataService) {
         var modal = this;
 
-        modal.parent_habit_id = habitListDataService.getNewHabitId();
+        modal.parent_habit_id = habitListDataService.getParentHabitId();
+
+        console.log('parent id:',modal.parent_habit_id);
+
+        if (modal.parent_habit_id) {
+          getSingleHabit(modal.parent_habit_id);
+        }
+
+        function getSingleHabit (id) {
+          habitListDataService.getSingleHabit(id)
+            .then(function(result) {
+              console.log('line64: ', result);
+              modal.parent_habit = result.data.data[0].habit
+
+            })
+        }
 
         modal.cancelForm = function () {
           console.log('cancelForm');
@@ -64,6 +82,7 @@
         }
 
         modal.submitForm = function () {
+          debugger;
           console.log('submitForm');
           console.log('modal obj:', modal);
           addHabit(modal);
