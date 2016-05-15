@@ -5,6 +5,8 @@ var chaiHttp = require('chai-http');
 var server = require('../../src/server/app');
 var knex = require('../../db/knex');
 var should = chai.should();
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 chai.use(chaiHttp);
 
@@ -49,7 +51,7 @@ describe('register route', function() {
       .post('/register')
       .send({
         email: 'mocha@test.com',
-        pword: 'pass'
+        pword: bcrypt.hashSync('pass', saltRounds)
       })
       .end(function (err, res) {
         chai.request(server)
@@ -62,7 +64,7 @@ describe('register route', function() {
           res.body.status.should.equal('success')
           res.body.data.length.should.equal(4);
           res.body.data[3].email.should.equal('mocha@test.com');
-          res.body.data[3].pword.should.equal('pass');
+          bcrypt.compareSync('pass', res.body.data[3].pword).should.equal(true);
           done()
         })
       })
