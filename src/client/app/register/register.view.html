@@ -8,18 +8,18 @@
   <div class="col-md-4 col-md-offset-4 register" ng-show="vm.showReg">
     <h1>Register</h1>
     <hr>
-    <form>
+    <form ng-submit="vm.addNewUser()">
       <div class="form-group">
-        <label>User Name</label>
-        <input class="form-control" type="text"></input>
+        <label>Email Address</label>
+        <input ng-model="vm.email" class="form-control" type="email"></input>
       </div>
       <div class="form-group">
         <label>Password</label>
-        <input class="form-control" type="password"></input>
+        <input ng-model="vm.pword" class="form-control" type="password"></input>
       </div>
       <div class="form-group">
         <label>Confirm Password</label>
-        <input class="form-control" type="password"></input>
+        <input ng-model="vm.pwordCheck" class="form-control" type="password"></input>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block">Sign Up!</button>
