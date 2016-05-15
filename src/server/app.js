@@ -11,6 +11,8 @@ var bodyParser = require('body-parser');
 // *** routes *** //
 var routes = require('./routes/index.js');
 var habitRoute = require('./routes/habit.js');
+var registerRoute = require('./routes/register.js');
+var usersRoute = require('./routes/users.js');
 
 
 // *** express instance *** //
@@ -41,6 +43,8 @@ app.use(express.static(path.join(__dirname, '../client')));
 // *** main routes *** //
 app.use('/', routes);
 app.use('/habits', habitRoute);
+app.use('/register', registerRoute);
+app.use('/users', usersRoute);
 
 
 // catch 404 and forward to error handler
