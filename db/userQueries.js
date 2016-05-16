@@ -11,7 +11,12 @@ var addUser = function (email, pword) {
   }, 'id')
 }
 
+var findUser = function (email) {
+  return knex('users').where('email', email);
+}
+
 module.exports = {
   getAllUsers: getAllUsers,
-  addUser: addUser
+  addUser: addUser,
+  findUser: findUser
 }

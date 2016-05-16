@@ -69,5 +69,10 @@ describe('register route', function() {
         })
       })
     })
-  });
+  })
+
+  // describe('get user by email', function () {
+
+  //   it('should get')
+  // })
 });

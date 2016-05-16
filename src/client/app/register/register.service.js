@@ -23,6 +23,15 @@
             console.log('err line23: ', err);
             return err;
           });
+        },
+        findOne: function(email) {
+          return $http.get('users')
+          .then(function(res) {
+            return res;
+          })
+          .catch(function(err) {
+            return err;
+          })
         }
       }
     }

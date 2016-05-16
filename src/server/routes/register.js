@@ -33,11 +33,25 @@ var user = require('../../../db/userQueries');
 // });
 
 router.post('/', function (req, res, next) {
-  console.log('login line34: ', req.body);
+  console.log('register line40: ', req.body);
+
   var email  = req.body.email;
   var pword = bcrypt.hashSync(req.body.pword, saltRounds);
-
-  user.addUser(email, pword)
+  
+  //check user(email) does not already exist:
+ 
+  user.findUser(email)
+  .then(function(user1){
+    if(user.length){
+      console.log('register line 49');
+      console.log('user', user);
+      return res.status(409).json({
+        status: 'fail',
+        message: 'email already exists'
+      }) 
+    }
+    
+    user.addUser(email, pword)
     .then(function (id) {
       console.log('new user id: ', id);
       res.status(200).json({
