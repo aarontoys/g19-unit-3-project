@@ -2,8 +2,11 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
+var moment = require('moment');
+var jwt = require('jwt-simple');
 
 var user = require('../../../db/userQueries');
+var config = require('../../_config');
 
 // router.get('/', function (req, res, next) {
 //   user.getAllHabits()
@@ -53,12 +56,30 @@ router.post('/', function (req, res, next) {
     
     user.addUser(email, pword)
     .then(function (id) {
-      console.log('new user id: ', id);
+      var token = generateToken(id);
       res.status(200).json({
         status: 'success',
         id: id
       })
     })
-})
+    .catch(function(err) {
+      return next(err);
+    })
+  })
+  .catch(function(err) {
+    return next(err);
+  })
+
+});
+
+//generate a token
+function generateToken(id) {
+  var payload = {
+    exp: moment().add(14,'days').unix(),
+    iat: moment().unix(),
+    sub: id
+  }
+  return jwt.encode(payload, config.TOKEN_SECRET);
+}
 
 module.exports = router;
