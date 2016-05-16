@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
-var user = require('../../../db/userQueries')
+var user = require('../../../db/userQueries');
 
 // router.get('/', function (req, res, next) {
 //   user.getAllHabits()
@@ -32,9 +34,10 @@ var user = require('../../../db/userQueries')
 
 router.post('/', function (req, res, next) {
   console.log('login line34: ', req.body);
-  var b = req.body;
+  var email  = req.body.email;
+  var pword = bcrypt.hashSync(req.body.pword, saltRounds);
 
-  user.addUser(b.email, b.pword)
+  user.addUser(email, pword)
     .then(function (id) {
       console.log('new user id: ', id);
       res.status(200).json({

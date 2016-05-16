@@ -25,9 +25,9 @@ describe('register route', function() {
   });
 
   describe('/get all users', function () {
-    it('should return all users in db', function () {
+    it('should return all users in db', function (done) {
       chai.request(server)
-      .get('users')
+      .get('/users')
       .end(function (err, res) {
         res.status.should.equal(200);
         res.type.should.equal('application/json');
@@ -38,7 +38,7 @@ describe('register route', function() {
         res.body.data[0].fname.should.equal('Aaron');
         res.body.data[0].lname.should.equal('Toys');
         res.body.data[0].email.should.equal('aarontoys@gmail.com');
-        res.body.data[0].pword.should.equal('pass');
+        bcrypt.compareSync('pass', res.body.data[0].pword).should.equal(true);
         done()
       })
     })
@@ -51,7 +51,7 @@ describe('register route', function() {
       .post('/register')
       .send({
         email: 'mocha@test.com',
-        pword: bcrypt.hashSync('pass', saltRounds)
+        pword: 'pass'
       })
       .end(function (err, res) {
         chai.request(server)
