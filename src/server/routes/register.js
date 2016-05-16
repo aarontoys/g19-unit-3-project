@@ -5,7 +5,7 @@ const saltRounds = 10;
 var moment = require('moment');
 var jwt = require('jwt-simple');
 
-var user = require('../../../db/userQueries');
+var userQueries = require('../../../db/userQueries');
 var config = require('../../_config');
 
 // router.get('/', function (req, res, next) {
@@ -43,8 +43,8 @@ router.post('/', function (req, res, next) {
   
   //check user(email) does not already exist:
  
-  user.findUser(email)
-  .then(function(user1){
+  userQueries.findUser(email)
+  .then(function(user){
     if(user.length){
       console.log('register line 49');
       console.log('user', user);
@@ -54,7 +54,7 @@ router.post('/', function (req, res, next) {
       }) 
     }
     
-    user.addUser(email, pword)
+    userQueries.addUser(email, pword)
     .then(function (id) {
       var token = generateToken(id);
       res.status(200).json({
