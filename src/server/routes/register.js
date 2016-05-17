@@ -59,7 +59,10 @@ router.post('/', function (req, res, next) {
       var token = generateToken(id);
       res.status(200).json({
         status: 'success',
-        id: id
+        data: {
+          id: id,
+          token: token
+        }
       })
     })
     .catch(function(err) {

@@ -13,9 +13,9 @@ angular
     }
   }
 
-  registerCtrl.$inject = ['registerDataService'];
+  registerCtrl.$inject = ['registerDataService', 'authService', '$location'];
 
-  function registerCtrl (registerDataService) {
+  function registerCtrl (registerDataService , authService, $location) {
     var vm = this;
 
     vm.showReg = true;
@@ -30,10 +30,13 @@ angular
       console.log('about to add: ', user);
       registerDataService.addUser(user)
       .then(function(result) {
-        console.log('user added!')
+        console.log('user added!', result)
+        authService.setUserInfo(result);
+        $location.path('/habits')
       })
       .catch(function(err) {
         console.log('user not added!');
+        return err;
       });
     }
   }
